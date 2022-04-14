@@ -10,9 +10,9 @@
     </div>
     <div class="scroll-container">
       <conversation-item
-        :conversation="item"
-        v-for="item in conversationList"
-        :key="item.conversationID"
+          :conversation="item"
+          v-for="item in conversationList"
+          :key="item.conversationID"
       />
     </div>
     <el-dialog title="选择求助的督导" :visible.sync="showDialog" width="30%">
@@ -24,7 +24,7 @@
             :value="item.username">
         </el-option>
       </el-select>
-<!--      <el-input placeholder="请输入用户ID" v-model="userID" @keydown.enter.native="handleConfirm"/>-->
+      <!--      <el-input placeholder="请输入用户ID" v-model="userID" @keydown.enter.native="handleConfirm"/>-->
       <span slot="footer" class="dialog-footer">
         <el-button @click="showDialog = false">取 消</el-button>
         <el-button type="primary" @click="handleConfirm">确 定</el-button>
@@ -45,7 +45,8 @@ export default {
       userID: '',
       isCheckouting: false, // 是否正在切换会话
       timeout: null,
-      helper_list: null
+      helper_list: null,
+      startTime: '!!!'
     }
   },
   computed: {
@@ -87,10 +88,11 @@ export default {
     handleConfirm() {
       if (this.userID !== '@TIM#SYSTEM') {
         this.$store
-          .dispatch('checkoutConversation', `C2C${this.userID}`)
-          .then(() => {
-            this.showDialog = false
-          }).catch(() => {
+            .dispatch('checkoutConversation', `C2C${this.userID}`)
+            .then(() => {
+              console.log(this.startTime)
+              this.showDialog = false
+            }).catch(() => {
           this.$store.commit('showMessage', {
             message: '没有找到该用户',
             type: 'warning'
@@ -127,14 +129,14 @@ export default {
         return
       }
       const currentIndex = this.conversationList.findIndex(
-        item => item.conversationID === this.currentConversation.conversationID
+          item => item.conversationID === this.currentConversation.conversationID
       )
       if (event.keyCode === 38 && currentIndex - 1 >= 0) {
         this.checkoutPrev(currentIndex)
       }
       if (
-        event.keyCode === 40 &&
-        currentIndex + 1 < this.conversationList.length
+          event.keyCode === 40 &&
+          currentIndex + 1 < this.conversationList.length
       ) {
         this.checkoutNext(currentIndex)
       }
@@ -142,30 +144,30 @@ export default {
     checkoutPrev(currentIndex) {
       this.isCheckouting = true
       this.$store
-        .dispatch(
-          'checkoutConversation',
-          this.conversationList[currentIndex - 1].conversationID
-        )
-        .then(() => {
-          this.isCheckouting = false
-        })
-        .catch(() => {
-          this.isCheckouting = false
-        })
+          .dispatch(
+              'checkoutConversation',
+              this.conversationList[currentIndex - 1].conversationID
+          )
+          .then(() => {
+            this.isCheckouting = false
+          })
+          .catch(() => {
+            this.isCheckouting = false
+          })
     },
     checkoutNext(currentIndex) {
       this.isCheckouting = true
       this.$store
-        .dispatch(
-          'checkoutConversation',
-          this.conversationList[currentIndex + 1].conversationID
-        )
-        .then(() => {
-          this.isCheckouting = false
-        })
-        .catch(() => {
-          this.isCheckouting = false
-        })
+          .dispatch(
+              'checkoutConversation',
+              this.conversationList[currentIndex + 1].conversationID
+          )
+          .then(() => {
+            this.isCheckouting = false
+          })
+          .catch(() => {
+            this.isCheckouting = false
+          })
     }
   }
 }
