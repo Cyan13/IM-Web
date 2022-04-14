@@ -90,6 +90,7 @@ export default {
         this.$store
             .dispatch('checkoutConversation', `C2C${this.userID}`)
             .then(() => {
+              this.getTime()
               console.log(this.startTime)
               this.showDialog = false
             }).catch(() => {
@@ -168,6 +169,9 @@ export default {
           .catch(() => {
             this.isCheckouting = false
           })
+    },
+    getTime(){
+      this.startTime = new Date()
     }
   }
 }
