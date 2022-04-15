@@ -92,6 +92,26 @@ export default {
             .then(() => {
               this.getTime()
               console.log(this.startTime)
+              this.$http({
+                url: '/record/saveRecord',
+                method: 'post',
+                crossdomain: true,
+                headers: {'Content-Type': 'application/json'},
+                body: {
+                  'consultantID': '32',
+                  'helperID': '52',
+                  'customerTrueName': '王',
+                  'consultantTrueName': '咨询师1',
+                  'helperTrueName': '督导1',
+                  'date': '2022-04-15 00:00:00.000000',
+                  'startTime': '2022-04-13 14:21:10.000000',
+                  'endTime': '2022-04-15 14:21:10.000000',
+                  'historyURL': 'url'
+                }
+              }).catch(err => {
+                console.log(err.data)
+              })
+              console.log(this.startTime)
               this.showDialog = false
             }).catch(() => {
           this.$store.commit('showMessage', {
@@ -118,7 +138,7 @@ export default {
         })
       }).then(res => {
         // console.log(res)
-        console.log("helperlist")
+        console.log('helperlist')
         this.helper_list=res.data.data
         console.log(this.helper_list)
       }).catch(err => {
@@ -170,7 +190,7 @@ export default {
             this.isCheckouting = false
           })
     },
-    getTime(){
+    getTime() {
       this.startTime = new Date()
     }
   }
