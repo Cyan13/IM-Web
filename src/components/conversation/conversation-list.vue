@@ -88,11 +88,13 @@ export default {
     },
     handleConfirm() {
       if (this.userID !== '@TIM#SYSTEM') {
+        this.$store2.commit('setHelperUserName',this.userID)
         this.$store
             .dispatch('checkoutConversation', `C2C${this.userID}`)
             .then(() => {
               this.getTime()
               console.log(this.startTime)
+              console.log(this.$store2.state.helperUserName)
               this.$store2.commit('setStartTime',this.startTime)
               this.showDialog = false
             }).catch(() => {

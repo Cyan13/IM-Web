@@ -13,7 +13,9 @@ const state = {
     date: getDate(new Date()),
     startTime: '',
     endTime: '',
-    historyURL: 'url'
+    historyURL: 'url',
+
+    helperUserName:''
 }
 
 const getters = {
@@ -25,13 +27,10 @@ const getters = {
 const mutations = {
     setStartTime(state, value) {
         state.startTime=value
+    },
+    setHelperUserName(state, value) {
+        state.helperUserName=value
     }
-    // setUserID(state, value) {
-    //     state.userid=value
-    // },
-    // setSchedule(state, value) {
-    //     state.schedule=value
-    // }
 }
 const actions = {
     // getRole({ commit, state }) {
