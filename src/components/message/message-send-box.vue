@@ -486,7 +486,7 @@ export default {
     },
     handleEnd() {
       console.log('getstartTime success')
-      console.log(this.$store2.state.startTime)
+      console.log(this.$store2.state.date)
       this.getTime()
       console.log(this.endTime)
       this.$http({
@@ -500,7 +500,7 @@ export default {
           'customerTrueName': '王',
           'consultantTrueName': '咨询师1',
           'helperTrueName': '督导1',
-          'date': '2022-04-15 00:00:00.000000',
+          'date': this.$store2.state.date+ ' 00:00:00.000000',
           'startTime': this.$store2.state.startTime,
           'endTime': this.endTime,
           'historyURL': 'url'
@@ -509,6 +509,14 @@ export default {
         console.log(err.data)
       })
       this.endDialogVisible = false
+      this.$store2.state.helperID=''
+      this.$store2.state.customerTrueName=''
+      this.$store2.state.helperTrueName=''
+      this.$store2.state.startTime=''
+      this.$store2.state.endTime=''
+      // this.$router.push({
+      //   path: '/consultant/frontpage'
+      // })
     },
     getTime() {
       var date = new Date()
