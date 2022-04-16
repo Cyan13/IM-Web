@@ -4,7 +4,10 @@
       <button title="刷新列表" @click="handleRefresh">
         <i class="tim-icon-refresh"></i>
       </button>
-      <button title="求助督导" @click="handleAddButtonClick">
+      <button v-if="helpVisible" title="求助督导"  @click="handleAddButtonClick">
+        <i class="el-icon-notebook-1"></i>
+      </button>
+      <button v-if="!helpVisible" title="结束求助"  @click="handleAddButtonClick">
         <i class="el-icon-notebook-1"></i>
       </button>
     </div>
@@ -47,7 +50,8 @@ export default {
       isCheckouting: false, // 是否正在切换会话
       timeout: null,
       helper_list: null,
-      startTime: ''
+      startTime: '',
+      helpVisible: this.$store2.state.helpVisible
     }
   },
   computed: {
@@ -88,6 +92,10 @@ export default {
     },
     handleConfirm() {
       if (this.userID !== '@TIM#SYSTEM') {
+        this.helpVisible = false
+        this.$store2.commit('setHelpVisible', false)
+        console.log('visible')
+        console.log(this.$store2.state.helpVisible)
         this.$store2.commit('setHelperUserName',this.userID)
         this.$store
             .dispatch('checkoutConversation', `C2C${this.userID}`)

@@ -12,8 +12,8 @@
       <i class="iconfont icon-tupian" title="发图片" @click="handleSendImageClick"></i>
       <i class="el-icon-camera" title="发视频" @click="handleSendVideoClick"></i>
 <!--      <i class="iconfont icon-wenjian" title="发文件" @click="handleSendFileClick"></i>-->
-      <i class="iconfont icon-zidingyi" title="求助督导" @click="endDialogVisible = true"></i>
-      <i class="iconfont icon-diaocha" title="小调查" @click="surveyDialogVisible = true"></i>
+      <i class="iconfont icon-zidingyi" title="结束求助" @click="endDialogVisible = true"></i>
+<!--      <i class="iconfont icon-diaocha" title="小调查" @click="surveyDialogVisible = true"></i>-->
 <!--      <el-dropdown>-->
 <!--      <span class="el-dropdown-link">-->
 <!--      <i class="el-icon-phone-outline" v-if="toAccount !== userID" title="语音通话"></i>-->
@@ -518,6 +518,7 @@ export default {
       this.$store2.state.helperTrueName=''
       this.$store2.state.startTime=''
       this.$store2.state.endTime=''
+      this.$store2.state.helpVisible='true'
       // this.$router.push({
       //   path: '/consultant/frontpage'
       // })

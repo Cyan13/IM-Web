@@ -15,7 +15,8 @@ const state = {
     endTime: '',
     historyURL: 'url',
 
-    helperUserName:''
+    helperUserName:'',
+    helpVisible: true
 }
 
 const getters = {
@@ -39,6 +40,9 @@ const mutations = {
     },
     setHelperID(state, value) {
         state.helperID=value
+    },
+    setHelpVisible(state, value) {
+        state.helpVisible=value
     }
 }
 const actions = {
