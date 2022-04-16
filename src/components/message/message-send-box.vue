@@ -489,13 +489,14 @@ export default {
       console.log(this.$store2.state.date)
       this.getTime()
       console.log(this.endTime)
+      console.log(this.$store1.state.userid)
       this.$http({
         url: '/record/saveRecord',
         method: 'post',
         crossdomain: true,
         headers: {'Content-Type': 'application/json'},
         body: {
-          'consultantID': '32',
+          consultantID: this.$store1.state.userid,
           'helperID': '52',
           'customerTrueName': '王',
           'consultantTrueName': '咨询师1',
