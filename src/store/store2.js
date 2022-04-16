@@ -30,6 +30,9 @@ const mutations = {
     },
     setHelperUserName(state, value) {
         state.helperUserName=value
+    },
+    setConsultantTrueName(state, value) {
+        state.consultantTrueName=value
     }
 }
 const actions = {

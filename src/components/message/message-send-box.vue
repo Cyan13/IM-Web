@@ -485,9 +485,11 @@ export default {
       this.messageContent = ''
     },
     handleEnd() {
-      console.log('getstartTime success')
-      console.log(this.$store2.state.date)
+      // console.log('getstartTime success')
+      // console.log(this.$store2.state.date)
       this.getTime()
+      this.getConsultantData()
+      // this.getHelperData()
       console.log(this.endTime)
       console.log(this.$store1.state.userid)
       this.$http({
@@ -498,8 +500,8 @@ export default {
         body: {
           consultantID: this.$store1.state.userid,
           'helperID': '52',
-          'customerTrueName': '王',
-          'consultantTrueName': '咨询师1',
+          'customerTrueName': '',
+          'consultantTrueName': this.$store2.state.consultantTrueName,
           'helperTrueName': '督导1',
           'date': this.$store2.state.date+ ' 00:00:00.000000',
           'startTime': this.$store2.state.startTime,
@@ -522,6 +524,20 @@ export default {
     getTime() {
       var date = new Date()
       this.endTime = getFullTime(date)
+    },
+    getConsultantData() {
+      this.$http({
+        url: '/admin/getWorkerList',
+        method: 'post',
+        crossdomain: true,
+        body:JSON.stringify({
+          'username': this.$store1.state.username,
+        })
+      }).then(res => {
+        // console.log(res.data.data[0].trueName)
+        this.$store2.commit('setConsultantTrueName',res.data.data[0].trueName)
+        // console.log(this.$store2.state.consultantTrueName)
+      })
     },
     sendCustomMessage() {
       if (
