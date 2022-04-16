@@ -3,6 +3,7 @@ import { MessageBox, Row, Col, Button, Input, Loading, Dialog, Dropdown, Dropdow
 import Avatar from './components/avatar.vue'
 import store from './store/index'
 import store1 from './store/store'
+import store2 from './store/store2'
 import tim from 'tim'
 import TIM from 'tim-js-sdk/tim-js-friendship.js'
 // import TWebLive from 'tweblive'
@@ -76,6 +77,7 @@ Vue.prototype.$bus = new Vue() // event Bus 用于无关系组件间的通信。
 Vue.prototype.tim = tim
 Vue.prototype.TIM = TIM
 // Vue.prototype.TWebLive = TWebLive
+Vue.prototype.$store2 = store2
 Vue.prototype.$store1 = store1
 Vue.prototype.$store = store
 Vue.prototype.$confirm = MessageBox.confirm
@@ -115,5 +117,6 @@ new Vue({
   router,
   store,
   store1,
+  store2,
   render: h => h(App)
 })

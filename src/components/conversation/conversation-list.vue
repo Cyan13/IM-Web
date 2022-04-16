@@ -93,6 +93,7 @@ export default {
             .then(() => {
               this.getTime()
               console.log(this.startTime)
+              // this.$store2.state.startTime='this.startTime'
               this.$http({
                 url: '/record/saveRecord',
                 method: 'post',
