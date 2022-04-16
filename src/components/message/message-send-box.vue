@@ -12,7 +12,7 @@
       <i class="iconfont icon-tupian" title="发图片" @click="handleSendImageClick"></i>
       <i class="el-icon-camera" title="发视频" @click="handleSendVideoClick"></i>
 <!--      <i class="iconfont icon-wenjian" title="发文件" @click="handleSendFileClick"></i>-->
-      <i class="iconfont icon-zidingyi" title="结束求助" @click="endDialogVisible = true"></i>
+<!--      <i class="iconfont icon-zidingyi" title="结束求助" @click="endDialogVisible = true"></i>-->
 <!--      <i class="iconfont icon-diaocha" title="小调查" @click="surveyDialogVisible = true"></i>-->
 <!--      <el-dropdown>-->
 <!--      <span class="el-dropdown-link">-->
@@ -29,12 +29,12 @@
       </div>
     </div>
 
-    <el-dialog title="确认结束督导求助？" :visible.sync="endDialogVisible" width="30%">
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="endDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handleEnd">确 定</el-button>
-      </span>
-    </el-dialog>
+<!--    <el-dialog title="确认结束督导求助？" :visible.sync="endDialogVisible" width="30%">-->
+<!--      <span slot="footer" class="dialog-footer">-->
+<!--        <el-button @click="endDialogVisible = false">取 消</el-button>-->
+<!--        <el-button type="primary" @click="handleEnd">确 定</el-button>-->
+<!--      </span>-->
+<!--    </el-dialog>-->
 
 <!--    <el-dialog title="发自定义消息" :visible.sync="sendCustomDialogVisible" width="30%">-->
 <!--      <el-form label-width="100px">-->
@@ -53,28 +53,28 @@
 <!--        <el-button type="primary" @click="sendCustomMessage">确 定</el-button>-->
 <!--      </span>-->
 <!--    </el-dialog>-->
-    <el-dialog title="对IM Web demo的建议和使用感受" :visible.sync="surveyDialogVisible" width="30%">
-      <el-form label-width="100px">
-        <el-form-item label="评分">
-          <div class="block">
-            <el-rate v-model="rate" :colors="colors" show-text></el-rate>
-          </div>
-        </el-form-item>
-        <el-form-item label="建议">
-          <el-input
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            resize="none"
-            v-model="suggestion"
-          ></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="surveyDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="sendSurvey">确 定</el-button>
-      </span>
-    </el-dialog>
+<!--    <el-dialog title="对IM Web demo的建议和使用感受" :visible.sync="surveyDialogVisible" width="30%">-->
+<!--      <el-form label-width="100px">-->
+<!--        <el-form-item label="评分">-->
+<!--          <div class="block">-->
+<!--            <el-rate v-model="rate" :colors="colors" show-text></el-rate>-->
+<!--          </div>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="建议">-->
+<!--          <el-input-->
+<!--            type="textarea"-->
+<!--            :rows="2"-->
+<!--            placeholder="请输入内容"-->
+<!--            resize="none"-->
+<!--            v-model="suggestion"-->
+<!--          ></el-input>-->
+<!--        </el-form-item>-->
+<!--      </el-form>-->
+<!--      <span slot="footer" class="dialog-footer">-->
+<!--        <el-button @click="surveyDialogVisible = false">取 消</el-button>-->
+<!--        <el-button type="primary" @click="sendSurvey">确 定</el-button>-->
+<!--      </span>-->
+<!--    </el-dialog>-->
     <div class="bottom">
       <textarea
         ref="text-input"

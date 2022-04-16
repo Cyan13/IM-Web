@@ -10,7 +10,7 @@ const state = {
     customerTrueName: '',
     consultantTrueName: '',
     helperTrueName: '',
-    date: getDate(new Date()),
+    date: '',
     startTime: '',
     endTime: '',
     historyURL: 'url',
@@ -28,6 +28,12 @@ const getters = {
 const mutations = {
     setStartTime(state, value) {
         state.startTime=value
+    },
+    setEndTime(state, value) {
+        state.endTime=value
+    },
+    setDate(state, value) {
+        state.date=value
     },
     setHelperUserName(state, value) {
         state.helperUserName=value

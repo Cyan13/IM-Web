@@ -7,7 +7,7 @@
       <button v-if="helpVisible" title="求助督导"  @click="handleAddButtonClick">
         <i class="el-icon-notebook-1"></i>
       </button>
-      <button v-if="!helpVisible" title="结束求助"  @click="handleAddButtonClick">
+      <button v-if="!helpVisible" title="结束求助"  @click="handleEndButtonClick">
         <i class="el-icon-notebook-1"></i>
       </button>
     </div>
@@ -33,13 +33,19 @@
         <el-button type="primary" @click="handleConfirm">确 定</el-button>
       </span>
     </el-dialog>
+    <el-dialog title="确认结束督导求助？" :visible.sync="endDialogVisible" width="30%">
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="endDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="handleEnd">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import ConversationItem from './conversation-item'
 import { mapState } from 'vuex'
-import {getFullTime} from '@/utils/date'
+import {getDate, getFullTime} from '@/utils/date'
 export default {
   name: 'ConversationList',
   components: { ConversationItem },
@@ -50,8 +56,14 @@ export default {
       isCheckouting: false, // 是否正在切换会话
       timeout: null,
       helper_list: null,
+      consultantTrueName: '',
+      helperID: '',
+      helperTrueName: '',
       startTime: '',
-      helpVisible: this.$store2.state.helpVisible
+      endTime:'',
+      date:'',
+      helpVisible: this.$store2.state.helpVisible,
+      endDialogVisible: false
     }
   },
   computed: {
@@ -90,13 +102,17 @@ export default {
     handleAddButtonClick() {
       this.showDialog = true
     },
+    handleEndButtonClick() {
+      this.endDialogVisible = true
+    },
     handleConfirm() {
       if (this.userID !== '@TIM#SYSTEM') {
         this.helpVisible = false
         this.$store2.commit('setHelpVisible', false)
-        console.log('visible')
-        console.log(this.$store2.state.helpVisible)
+        console.log('visible!')
+        // console.log(this.$store2.state.helpVisible)
         this.$store2.commit('setHelperUserName',this.userID)
+        console.log(this.$store2.state.helperUserName)
         this.$store
             .dispatch('checkoutConversation', `C2C${this.userID}`)
             .then(() => {
@@ -104,6 +120,7 @@ export default {
               // console.log(this.startTime)
               // console.log(this.$store2.state.helperUserName)
               this.$store2.commit('setStartTime',this.startTime)
+              this.$store2.commit('setDate',this.date)
               this.showDialog = false
             }).catch(() => {
           this.$store.commit('showMessage', {
@@ -118,6 +135,89 @@ export default {
         })
       }
       this.userID = ''
+    },
+    handleEnd() {
+      // console.log('getstartTime success')
+      // console.log(this.$store2.state.date)
+      this.getEndTime()
+      this.$store2.commit('setEndTime',this.endTime)
+      this.getConsultantData()
+      this.$store2.commit('setConsultantTrueName',this.consultantTrueName)
+      this.getHelperData()
+      this.$store2.commit('setHelperID',this.helperID)
+      this.$store2.commit('setHelperTrueName',this.helperTrueName)
+      console.log(this.endTime)
+      console.log(this.$store1.state.userid)
+      console.log('handleENd')
+      console.log(this.$store2.state.helperID)
+      this.$http({
+        url: '/record/saveRecord',
+        method: 'post',
+        crossdomain: true,
+        headers: {'Content-Type': 'application/json'},
+        body: {
+          'consultantID': this.$store1.state.userid,
+          'helperID': this.$store2.state.helperID,
+          'customerTrueName': '',
+          'consultantTrueName': this.$store2.state.consultantTrueName,
+          'helperTrueName': this.$store2.state.helperTrueName,
+          'date': this.$store2.state.date+ ' 00:00:00.000000',
+          'startTime': this.$store2.state.startTime,
+          'endTime': this.$store2.state.endTime,
+          'comment': '',
+          'historyURL': 'url'
+        }
+      }).catch(err => {
+        console.log(err.data)
+      })
+      this.endDialogVisible = false
+      this.helpVisible = true
+      this.$store2.state.helperID=''
+      this.$store2.state.customerTrueName=''
+      this.$store2.state.helperTrueName=''
+      this.$store2.state.startTime=''
+      this.$store2.state.endTime=''
+      this.$store2.state.helpVisible=true
+      // this.$router.push({
+      //   path: '/consultant/frontpage'
+      // })
+    },
+    getEndTime() {
+      var date = new Date()
+      this.endTime = getFullTime(date)
+    },
+    getConsultantData() {
+      this.$http({
+        url: '/admin/getWorkerList',
+        method: 'post',
+        crossdomain: true,
+        body:JSON.stringify({
+          'username': this.$store1.state.username,
+        })
+      }).then(res => {
+        // console.log(res.data.data[0].trueName)
+        this.consultantTrueName = res.data.data[0].trueName
+        // this.$store2.commit('setConsultantTrueName',res.data.data[0].trueName)
+        // console.log(this.$store2.state.consultantTrueName)
+      })
+    },
+    getHelperData() {
+      this.$http({
+        url: '/admin/getWorkerList',
+        method: 'post',
+        crossdomain: true,
+        body:JSON.stringify({
+          'username': this.$store2.state.helperUserName,
+        })
+      }).then(res => {
+        // console.log(res.data.data[0].trueName)
+        this.helperID=res.data.data[0].id
+        this.helperTrueName=res.data.data[0].trueName
+        // this.$store2.commit('setHelperTrueName',res.data.data[0].trueName)
+        // this.$store2.commit('setHelperID',res.data.data[0].id)
+        // console.log(this.$store2.state.helperTrueName)
+        console.log('gethelperdata')
+      })
     },
     getHelperList() {
       this.$http({
@@ -183,8 +283,9 @@ export default {
           })
     },
     getTime() {
-      var date = new Date()
-      this.startTime = getFullTime(date)
+      var adate = new Date()
+      this.startTime = getFullTime(adate)
+      this.date = getDate(adate)
     }
   }
 }
