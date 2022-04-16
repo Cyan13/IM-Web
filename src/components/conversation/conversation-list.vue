@@ -93,27 +93,7 @@ export default {
             .then(() => {
               this.getTime()
               console.log(this.startTime)
-              // this.$store2.state.startTime='this.startTime'
-              this.$http({
-                url: '/record/saveRecord',
-                method: 'post',
-                crossdomain: true,
-                headers: {'Content-Type': 'application/json'},
-                body: {
-                  'consultantID': '32',
-                  'helperID': '52',
-                  'customerTrueName': '王',
-                  'consultantTrueName': '咨询师1',
-                  'helperTrueName': '督导1',
-                  'date': '2022-04-15 00:00:00.000000',
-                  'startTime': this.startTime,
-                  'endTime': '2022-04-15 14:21:10.000000',
-                  'historyURL': 'url'
-                }
-              }).catch(err => {
-                console.log(err.data)
-              })
-              console.log(this.startTime)
+              this.$store2.commit('setStartTime',this.startTime)
               this.showDialog = false
             }).catch(() => {
           this.$store.commit('showMessage', {

@@ -23,9 +23,9 @@ const getters = {
 }
 
 const mutations = {
-    // setUsername(state, value) {
-    //     state.username=value
-    // },
+    setStartTime(state, value) {
+        state.startTime=value
+    }
     // setUserID(state, value) {
     //     state.userid=value
     // },

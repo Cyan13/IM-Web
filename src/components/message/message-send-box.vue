@@ -135,6 +135,7 @@ import {
   Rate
 } from 'element-ui'
 import { emojiMap, emojiName, emojiUrl } from '../../utils/emojiMap'
+import {getFullTime} from '@/utils/date'
 
 export default {
   name: 'message-send-box',
@@ -162,6 +163,7 @@ export default {
       isSendCustomMessage: false,
       sendCustomDialogVisible: false,
       endDialogVisible: false,
+      endTime: '',
       surveyDialogVisible: false,
       form: {
         data: '',
@@ -481,6 +483,36 @@ export default {
         })
       })
       this.messageContent = ''
+    },
+    handleEnd() {
+      console.log('getstartTime success')
+      console.log(this.$store2.state.startTime)
+      this.getTime()
+      console.log(this.endTime)
+      this.$http({
+        url: '/record/saveRecord',
+        method: 'post',
+        crossdomain: true,
+        headers: {'Content-Type': 'application/json'},
+        body: {
+          'consultantID': '32',
+          'helperID': '52',
+          'customerTrueName': '王',
+          'consultantTrueName': '咨询师1',
+          'helperTrueName': '督导1',
+          'date': '2022-04-15 00:00:00.000000',
+          'startTime': this.$store2.state.startTime,
+          'endTime': this.endTime,
+          'historyURL': 'url'
+        }
+      }).catch(err => {
+        console.log(err.data)
+      })
+      this.endDialogVisible = false
+    },
+    getTime() {
+      var date = new Date()
+      this.endTime = getFullTime(date)
     },
     sendCustomMessage() {
       if (
