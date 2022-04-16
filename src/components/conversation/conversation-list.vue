@@ -36,6 +36,7 @@
 <script>
 import ConversationItem from './conversation-item'
 import { mapState } from 'vuex'
+import {getFullTime} from '@/utils/date'
 export default {
   name: 'ConversationList',
   components: { ConversationItem },
@@ -46,7 +47,7 @@ export default {
       isCheckouting: false, // 是否正在切换会话
       timeout: null,
       helper_list: null,
-      startTime: '!!!'
+      startTime: ''
     }
   },
   computed: {
@@ -104,7 +105,7 @@ export default {
                   'consultantTrueName': '咨询师1',
                   'helperTrueName': '督导1',
                   'date': '2022-04-15 00:00:00.000000',
-                  'startTime': '2022-04-13 14:21:10.000000',
+                  'startTime': this.startTime,
                   'endTime': '2022-04-15 14:21:10.000000',
                   'historyURL': 'url'
                 }
@@ -191,7 +192,8 @@ export default {
           })
     },
     getTime() {
-      this.startTime = new Date()
+      var date = new Date()
+      this.startTime = getFullTime(date)
     }
   }
 }

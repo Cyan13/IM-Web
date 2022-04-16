@@ -26,6 +26,10 @@ export function getTime(date, withSecond = false) {
   return withSecond ? `${addZeroPrefix(hour)}:${addZeroPrefix(minute)}:${addZeroPrefix(second)}` : `${hour}:${addZeroPrefix(minute)}`
 }
 
+export function getFullTime(date) {
+    return `${getDate(date)} ${getTime(date,true)}`
+}
+
 export function getFullDate(date) {
   return `${getDate(date)} ${getTime(date)}`
 }
