@@ -506,6 +506,7 @@ export default {
           'date': this.$store2.state.date+ ' 00:00:00.000000',
           'startTime': this.$store2.state.startTime,
           'endTime': this.endTime,
+          'comment': '',
           'historyURL': 'url'
         }
       }).catch(err => {
