@@ -489,7 +489,7 @@ export default {
       // console.log(this.$store2.state.date)
       this.getTime()
       this.getConsultantData()
-      // this.getHelperData()
+      this.getHelperData()
       console.log(this.endTime)
       console.log(this.$store1.state.userid)
       this.$http({
@@ -538,6 +538,20 @@ export default {
         // console.log(res.data.data[0].trueName)
         this.$store2.commit('setConsultantTrueName',res.data.data[0].trueName)
         // console.log(this.$store2.state.consultantTrueName)
+      })
+    },
+    getHelperData() {
+      this.$http({
+        url: '/admin/getWorkerList',
+        method: 'post',
+        crossdomain: true,
+        body:JSON.stringify({
+          'username': this.$store2.state.helperUserName,
+        })
+      }).then(res => {
+        // console.log(res.data.data[0].trueName)
+        this.$store2.commit('setHelperTrueName',res.data.data[0].trueName)
+        console.log(this.$store2.state.helperTrueName)
       })
     },
     sendCustomMessage() {
