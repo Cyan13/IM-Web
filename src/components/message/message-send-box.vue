@@ -498,11 +498,11 @@ export default {
         crossdomain: true,
         headers: {'Content-Type': 'application/json'},
         body: {
-          consultantID: this.$store1.state.userid,
-          'helperID': '52',
+          'consultantID': this.$store1.state.userid,
+          'helperID': this.$store2.state.helperID,
           'customerTrueName': '',
           'consultantTrueName': this.$store2.state.consultantTrueName,
-          'helperTrueName': '督导1',
+          'helperTrueName': this.$store2.state.helperTrueName,
           'date': this.$store2.state.date+ ' 00:00:00.000000',
           'startTime': this.$store2.state.startTime,
           'endTime': this.endTime,
@@ -551,7 +551,9 @@ export default {
       }).then(res => {
         // console.log(res.data.data[0].trueName)
         this.$store2.commit('setHelperTrueName',res.data.data[0].trueName)
-        console.log(this.$store2.state.helperTrueName)
+        this.$store2.commit('setHelperID',res.data.data[0].id)
+        // console.log(this.$store2.state.helperTrueName)
+        console.log(this.$store2.state.helperID)
       })
     },
     sendCustomMessage() {
