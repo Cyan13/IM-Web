@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import tim from '@/tim'
+
 export default {
   data() {
     return {
@@ -106,6 +108,7 @@ export default {
         }).catch(err => {
           console.log(err.data)
         })
+        this.IMLogout()
         this.$store1.state.username=''
         this.$store1.state.userid=''
         this.$store1.state.schedule=''
@@ -115,7 +118,17 @@ export default {
         })
       }
     },
-
+    IMLogout() {
+      // 若有当前会话，在退出登录时已读上报
+      // if (context.rootState.conversation.currentConversation.conversationID) {
+      //   tim.setMessageRead({ conversationID: context.rootState.conversation.currentConversation.conversationID })
+      // }
+      tim.logout().then(() => {
+        this.$store.commit('toggleIsLogin')
+        this.$store.commit('stopComputeCurrent')
+        this.$store.commit('reset')
+      })
+    }
   }
 }
 </script>
