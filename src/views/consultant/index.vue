@@ -109,6 +109,7 @@ export default {
         this.$store1.state.username=''
         this.$store1.state.userid=''
         this.$store1.state.schedule=''
+        this.$store1.state.role=0
         this.$router.push({
           path: '/login'
         })
