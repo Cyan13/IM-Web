@@ -7,6 +7,7 @@ const state = {
   username: '',
   userid: '',
   schedule: '',
+  role: 0
 }
 
 const getters = {
@@ -24,6 +25,9 @@ const mutations = {
   },
   setSchedule(state, value) {
     state.schedule=value
+  },
+  setRole(state, value) {
+    state.role=value
   }
 }
 const actions = {

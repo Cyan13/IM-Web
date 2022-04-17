@@ -4,10 +4,10 @@
       <button title="刷新列表" @click="handleRefresh">
         <i class="tim-icon-refresh"></i>
       </button>
-      <button v-if="helpVisible" title="求助督导"  @click="handleAddButtonClick">
+      <button v-if="helpVisible && role==1" title="求助督导"  @click="handleAddButtonClick">
         <i class="el-icon-notebook-1"></i>
       </button>
-      <button v-if="!helpVisible" title="结束求助"  @click="handleEndButtonClick">
+      <button v-if="!helpVisible && role==1" title="结束求助"  @click="handleEndButtonClick">
         <i class="el-icon-notebook-1"></i>
       </button>
     </div>
@@ -63,6 +63,7 @@ export default {
       endTime:'',
       date:'',
       helpVisible: this.$store2.state.helpVisible,
+      role: this.$store1.state.role,
       endDialogVisible: false
     }
   },
