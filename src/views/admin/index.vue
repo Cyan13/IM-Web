@@ -113,6 +113,7 @@ export default {
       this.$store1.state.username=''
       this.$store1.state.userid=''
       this.$store1.state.schedule=''
+      this.$store1.state.role=''
       this.$router.push({
         path: '/index'
       })
