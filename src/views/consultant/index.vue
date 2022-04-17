@@ -38,12 +38,12 @@
               <span style="margin-left: 15px">处理会话</span>
             </el-menu-item>
           </router-link>
-          <router-link to="/login">
+<!--          <router-link to="/login">-->
             <el-menu-item index="4" @click="logout">
               <i class="el-icon-turn-off" />
               <span style="margin-left: 15px" >退出</span>
             </el-menu-item>
-          </router-link>
+<!--          </router-link>-->
         </el-menu>
       </div>
       <div class="main">
@@ -61,7 +61,8 @@ export default {
         {name: '/user/contribution', navItem: '投稿'},
         {name: '/user/table', navItem: '历史稿件'},
         {name: '/user/information', navItem: '个人信息'}
-      ]
+      ],
+      logoutValidate: true
     }
   },
   methods: {
@@ -69,39 +70,49 @@ export default {
       // console.log(key, keyPath);
     },
     logout() {
-      console.log('退出')
-      this.$http({
-        url: '/admin/getWorkerList',
-        method: 'post',
-        crossdomain: true,
-        body: JSON.stringify({
-          'id': this.$store1.state.userid
+      this.logoutValidate = this.$store2.state.helpVisible
+      console.log(this.logoutValidate)
+      if(this.logoutValidate == false) {
+        alert('请先结束督导求助！')
+        this.$router.push({
+          path: '/consultant/connect'
         })
-      }).then(res => {
-        console.log(res.data)
-        var temp=res.data.data[0]
-        temp.available=2
-        console.log(temp)
+      }
+      else{
+        console.log('退出')
         this.$http({
-          url: '/admin/updateWorker',
+          url: '/admin/getWorkerList',
           method: 'post',
           crossdomain: true,
-          headers: {'Content-Type': 'application/json'},
-          body:JSON.stringify(temp)
+          body: JSON.stringify({
+            'id': this.$store1.state.userid
+          })
         }).then(res => {
-          console.log(res)
+          console.log(res.data)
+          var temp=res.data.data[0]
+          temp.available=2
+          console.log(temp)
+          this.$http({
+            url: '/admin/updateWorker',
+            method: 'post',
+            crossdomain: true,
+            headers: {'Content-Type': 'application/json'},
+            body:JSON.stringify(temp)
+          }).then(res => {
+            console.log(res)
+          }).catch(err => {
+            console.log(err.data)
+          })
         }).catch(err => {
           console.log(err.data)
         })
-      }).catch(err => {
-        console.log(err.data)
-      })
-      this.$store1.state.username=''
-      this.$store1.state.userid=''
-      this.$store1.state.schedule=''
-      this.$router.push({
-        path: '/index'
-      })
+        this.$store1.state.username=''
+        this.$store1.state.userid=''
+        this.$store1.state.schedule=''
+        this.$router.push({
+          path: '/login'
+        })
+      }
     },
 
   }
