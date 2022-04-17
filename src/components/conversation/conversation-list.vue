@@ -105,6 +105,43 @@ export default {
     handleEndButtonClick() {
       this.endDialogVisible = true
     },
+    getEndTime() {
+      var date = new Date()
+      this.endTime = getFullTime(date)
+    },
+    getConsultantData() {
+      this.$http({
+        url: '/admin/getWorkerList',
+        method: 'post',
+        crossdomain: true,
+        body:JSON.stringify({
+          'username': this.$store1.state.username,
+        })
+      }).then(res => {
+        // console.log(res.data.data[0].trueName)
+        this.consultantTrueName = res.data.data[0].trueName
+        // this.$store2.commit('setConsultantTrueName',res.data.data[0].trueName)
+        // console.log(this.$store2.state.consultantTrueName)
+      })
+    },
+    getHelperData() {
+      this.$http({
+        url: '/admin/getWorkerList',
+        method: 'post',
+        crossdomain: true,
+        body:JSON.stringify({
+          'username': this.$store2.state.helperUserName,
+        })
+      }).then(res => {
+        // console.log(res.data.data[0].trueName)
+        this.helperID=res.data.data[0].id
+        this.helperTrueName=res.data.data[0].trueName
+        this.$store2.commit('setHelperID',this.helperID)
+        this.$store2.commit('setHelperTrueName',this.helperTrueName)
+        // console.log(this.$store2.state.helperTrueName)
+        console.log('getHelperInfo')
+      })
+    },
     handleConfirm() {
       if (this.userID !== '@TIM#SYSTEM') {
         this.helpVisible = false
@@ -121,6 +158,11 @@ export default {
               // console.log(this.$store2.state.helperUserName)
               this.$store2.commit('setStartTime',this.startTime)
               this.$store2.commit('setDate',this.date)
+              this.getConsultantData()
+              this.$store2.commit('setConsultantTrueName',this.consultantTrueName)
+              this.getHelperData()
+              // this.$store2.commit('setHelperID',this.helperID)
+              // this.$store2.commit('setHelperTrueName',this.helperTrueName)
               this.showDialog = false
             }).catch(() => {
           this.$store.commit('showMessage', {
@@ -141,11 +183,7 @@ export default {
       // console.log(this.$store2.state.date)
       this.getEndTime()
       this.$store2.commit('setEndTime',this.endTime)
-      this.getConsultantData()
-      this.$store2.commit('setConsultantTrueName',this.consultantTrueName)
-      this.getHelperData()
-      this.$store2.commit('setHelperID',this.helperID)
-      this.$store2.commit('setHelperTrueName',this.helperTrueName)
+
       console.log(this.endTime)
       console.log(this.$store1.state.userid)
       console.log('handleENd')
@@ -181,43 +219,6 @@ export default {
       // this.$router.push({
       //   path: '/consultant/frontpage'
       // })
-    },
-    getEndTime() {
-      var date = new Date()
-      this.endTime = getFullTime(date)
-    },
-    getConsultantData() {
-      this.$http({
-        url: '/admin/getWorkerList',
-        method: 'post',
-        crossdomain: true,
-        body:JSON.stringify({
-          'username': this.$store1.state.username,
-        })
-      }).then(res => {
-        // console.log(res.data.data[0].trueName)
-        this.consultantTrueName = res.data.data[0].trueName
-        // this.$store2.commit('setConsultantTrueName',res.data.data[0].trueName)
-        // console.log(this.$store2.state.consultantTrueName)
-      })
-    },
-    getHelperData() {
-      this.$http({
-        url: '/admin/getWorkerList',
-        method: 'post',
-        crossdomain: true,
-        body:JSON.stringify({
-          'username': this.$store2.state.helperUserName,
-        })
-      }).then(res => {
-        // console.log(res.data.data[0].trueName)
-        this.helperID=res.data.data[0].id
-        this.helperTrueName=res.data.data[0].trueName
-        // this.$store2.commit('setHelperTrueName',res.data.data[0].trueName)
-        // this.$store2.commit('setHelperID',res.data.data[0].id)
-        // console.log(this.$store2.state.helperTrueName)
-        console.log('gethelperdata')
-      })
     },
     getHelperList() {
       this.$http({
