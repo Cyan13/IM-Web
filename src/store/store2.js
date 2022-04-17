@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getDate } from '@/utils/date'
 
 Vue.use(Vuex)
 

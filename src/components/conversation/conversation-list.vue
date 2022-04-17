@@ -120,6 +120,7 @@ export default {
       }).then(res => {
         // console.log(res.data.data[0].trueName)
         this.consultantTrueName = res.data.data[0].trueName
+        this.$store2.commit('setConsultantTrueName',this.consultantTrueName)
         // this.$store2.commit('setConsultantTrueName',res.data.data[0].trueName)
         // console.log(this.$store2.state.consultantTrueName)
       })
@@ -148,7 +149,7 @@ export default {
         this.$store2.commit('setHelpVisible', false)
         console.log('visible!')
         // console.log(this.$store2.state.helpVisible)
-        this.$store2.commit('setHelperUserName',this.userID)
+        this.$store2.commit('setHelperUserName',this.userID)//helper1
         console.log(this.$store2.state.helperUserName)
         this.$store
             .dispatch('checkoutConversation', `C2C${this.userID}`)
@@ -156,10 +157,8 @@ export default {
               this.getTime()
               // console.log(this.startTime)
               // console.log(this.$store2.state.helperUserName)
-              this.$store2.commit('setStartTime',this.startTime)
-              this.$store2.commit('setDate',this.date)
               this.getConsultantData()
-              this.$store2.commit('setConsultantTrueName',this.consultantTrueName)
+              // this.$store2.commit('setConsultantTrueName',this.consultantTrueName)
               this.getHelperData()
               // this.$store2.commit('setHelperID',this.helperID)
               // this.$store2.commit('setHelperTrueName',this.helperTrueName)
@@ -287,6 +286,8 @@ export default {
       var adate = new Date()
       this.startTime = getFullTime(adate)
       this.date = getDate(adate)
+      this.$store2.commit('setStartTime',this.startTime)
+      this.$store2.commit('setDate',this.date)
     }
   }
 }
