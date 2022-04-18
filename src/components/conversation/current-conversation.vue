@@ -106,7 +106,7 @@ export default {
       showConversationProfile: false,
       timeout: '',
       checkList: [],
-      // selectMessage: false,
+      selectMessage: false,
       selectedMessageList: [],
       mergerMessagePop: false,
       mergerMessage: null,
