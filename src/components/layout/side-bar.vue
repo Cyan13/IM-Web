@@ -1,7 +1,7 @@
 <template>
   <div class="side-bar-wrapper">
     <div class="bar-left">
-      <my-profile />
+<!--      <my-profile />-->
       <div class="tab-items" @click="handleClick">
         <div
           id="conversation-list"

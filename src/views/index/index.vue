@@ -21,9 +21,9 @@
           </el-col>
         </el-row>
       </div>
-      <calling  ref="callLayer" class="chat-wrapper"/>
+<!--      <calling  ref="callLayer" class="chat-wrapper"/>-->
       <image-previewer />
-      <group-live />
+<!--      <group-live />-->
 <!--    </div>-->
 <!--    <div class="bg"></div>-->
   </div>

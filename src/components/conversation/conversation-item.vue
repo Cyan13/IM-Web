@@ -17,14 +17,14 @@
                   v-if="conversation.type ===  TIM.TYPES.CONV_C2C"
                   >{{conversation.remark || conversation.userProfile.nick || conversation.userProfile.userID}}
                 </span>
-                <span :title="conversation.groupProfile.name || conversation.groupProfile.groupID"
-                  v-else-if="conversation.type ===  TIM.TYPES.CONV_GROUP"
-                  >{{conversation.groupProfile.name || conversation.groupProfile.groupID}}
-                </span>
-                <span
-                  v-else-if="conversation.type === TIM.TYPES.CONV_SYSTEM"
-                  >系统通知
-                </span>
+<!--                <span :title="conversation.groupProfile.name || conversation.groupProfile.groupID"-->
+<!--                  v-else-if="conversation.type ===  TIM.TYPES.CONV_GROUP"-->
+<!--                  >{{conversation.groupProfile.name || conversation.groupProfile.groupID}}-->
+<!--                </span>-->
+<!--                <span-->
+<!--                  v-else-if="conversation.type === TIM.TYPES.CONV_SYSTEM"-->
+<!--                  >系统通知-->
+<!--                </span>-->
               </div>
             </div>
             <div class="unread-count">
