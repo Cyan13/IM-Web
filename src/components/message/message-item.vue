@@ -243,7 +243,14 @@ export default {
     },
     avatar() {
       if (this.currentConversation.type === 'C2C') {
-        return this.message.avatar
+        if(this.$store1.state.role ==1) {
+          if(this.isMine)
+            return 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+        }
+        else if (this.$store1.state.role == 2) {
+          if(!this.isMine)
+            return 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+        }
       } else if (this.currentConversation.type === 'GROUP') {
         return this.isMine
           ? this.currentUserProfile.avatar

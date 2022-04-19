@@ -5,7 +5,7 @@
         <div class="des">
           <div style="width: 28%;height: 49%;position: absolute;left: 0;text-align: center;color: grey">
             <div style="width: 100%;height: 100%;background-color: white">
-              <el-avatar style="width: 80px;height: 80px;margin-top: 5px" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+              <el-avatar style="width: 80px;height: 80px;margin-top: 5px" src="https://imgcache.qq.com/open/qcloud/video/act/webim-avatar/avatar-2.png"></el-avatar>
               <div style="margin-top: 5px">督导</div>
               <div style="margin-top: 15px">{{ information.trueName }}</div>
               <div style="margin-top: 15px">{{ information.age }}岁</div>

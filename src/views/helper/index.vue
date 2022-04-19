@@ -3,7 +3,7 @@
     <div class="top">
       <div class="div-1" >
         <div style="display: inline-block;width: 30%;margin-top: 20px;padding-left:10px;">
-          <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+          <el-avatar src="https://imgcache.qq.com/open/qcloud/video/act/webim-avatar/avatar-2.png"></el-avatar>
         </div>
         <div style="width: 70%;display: inline-block;line-height: 10px;color: white;padding-left: 10px">欢迎你！<br></br>督导</div>
       </div>

@@ -115,8 +115,15 @@ export default {
       switch (this.conversation.type) {
         case 'GROUP':
           return this.conversation.groupProfile.avatar
+
         case 'C2C':
-          return this.conversation.userProfile.avatar
+          if(this.$store1.state.role == 1) {
+            return this.conversation.userProfile.avatar
+          }
+          else if(this.$store1.state.role == 2) {
+            return 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+          }
+          break
         default:
           return ''
       }
