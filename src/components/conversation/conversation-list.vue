@@ -110,22 +110,22 @@ export default {
       var date = new Date()
       this.endTime = getFullTime(date)
     },
-    getConsultantData() {
-      this.$http({
-        url: '/admin/getWorkerList',
-        method: 'post',
-        crossdomain: true,
-        body:JSON.stringify({
-          'username': this.$store1.state.username,
-        })
-      }).then(res => {
-        // console.log(res.data.data[0].trueName)
-        this.consultantTrueName = res.data.data[0].trueName
-        this.$store2.commit('setConsultantTrueName',this.consultantTrueName)
-        // this.$store2.commit('setConsultantTrueName',res.data.data[0].trueName)
-        // console.log(this.$store2.state.consultantTrueName)
-      })
-    },
+    // getConsultantData() {
+    //   this.$http({
+    //     url: '/admin/getWorkerList',
+    //     method: 'post',
+    //     crossdomain: true,
+    //     body:JSON.stringify({
+    //       'username': this.$store1.state.username,
+    //     })
+    //   }).then(res => {
+    //     // console.log(res.data.data[0].trueName)
+    //     this.consultantTrueName = res.data.data[0].trueName
+    //     this.$store2.commit('setConsultantTrueName',this.consultantTrueName)
+    //     // this.$store2.commit('setConsultantTrueName',res.data.data[0].trueName)
+    //     // console.log(this.$store2.state.consultantTrueName)
+    //   })
+    // },
     getHelperData() {
       this.$http({
         url: '/admin/getWorkerList',
@@ -197,7 +197,7 @@ export default {
           'consultantID': this.$store1.state.userid,
           'helperID': this.$store2.state.helperID,
           'customerTrueName': '',
-          'consultantTrueName': this.$store2.state.consultantTrueName,
+          'consultantTrueName': this.$store1.state.tureName,
           'helperTrueName': this.$store2.state.helperTrueName,
           'date': this.$store2.state.date+ ' 00:00:00.000000',
           'startTime': this.$store2.state.startTime,

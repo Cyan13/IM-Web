@@ -84,6 +84,7 @@ export default {
               this.$store1.commit('setUserID', res.data.data.id)
               this.$store1.commit('setSchedule', res.data.data.schedule)
               this.$store1.commit('setRole', res.data.data.role)
+              this.$store1.commit('setTrueName', res.data.data.trueName)
               var temp=res.data.data
               temp.available=1
               // console.log(res.data.data)

@@ -33,7 +33,7 @@
             </el-menu-item>
           </router-link>
           <router-link to="/consultant/connect">
-            <el-menu-item index="3">
+            <el-menu-item index="3" @click="IMProfile">
               <i class="el-icon-chat-round" />
               <span style="margin-left: 15px">处理会话</span>
             </el-menu-item>
@@ -64,7 +64,8 @@ export default {
         {name: '/user/table', navItem: '历史稿件'},
         {name: '/user/information', navItem: '个人信息'}
       ],
-      logoutValidate: true
+      logoutValidate: true,
+      form: { avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png', nick: '', gender: '',allowType: '' }
     }
   },
   methods: {
@@ -113,6 +114,7 @@ export default {
         this.$store1.state.userid=''
         this.$store1.state.schedule=''
         this.$store1.state.role=0
+        this.$store1.state.tureName=''
         this.$router.push({
           path: '/login'
         })
@@ -128,6 +130,41 @@ export default {
         this.$store.commit('stopComputeCurrent')
         this.$store.commit('reset')
       })
+    },
+    IMProfile() {
+      // const options = {}
+      // // 过滤空串
+      // Object.keys(this.form).forEach(key => {
+      //   if (this.form[key]) {
+      //     options[key] = this.form[key]
+      //   }
+      // })
+      // this.tim
+      //     .updateMyProfile({ avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png', nick: '', gender: '',allowType: '' })
+      //     .then(() => {
+      //       this.$store.commit('showMessage', {
+      //         message: '修改成功'
+      //       })
+      //       this.showEditMyProfile = false
+      //     })
+      //     .catch(imError => {
+      //       this.$store.commit('showMessage', {
+      //         message: imError.message,
+      //         type: 'error'
+      //       })
+      //     })
+      let promise = tim.updateMyProfile({
+        nick: this.$store1.state.trueName,
+        avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+        gender: 'Gender_Type_Male',
+        selfSignature: '',
+        allowType: 'AllowType_Type_AllowAny'
+      });
+      promise.then(function(imResponse) {
+        console.log(imResponse.data); // 更新资料成功
+      }).catch(function(imError) {
+        console.warn('updateMyProfile error:', imError); // 更新资料失败的相关信息
+      });
     }
   }
 }
