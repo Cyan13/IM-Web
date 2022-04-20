@@ -1,9 +1,9 @@
 <template>
   <div class="message-wrapper" :class="messagePosition">
     <div
-            v-if="currentConversationType === TIM.TYPES.CONV_C2C"
-            class="c2c-layout"
-            :class="messagePosition"
+        v-if="currentConversationType === TIM.TYPES.CONV_C2C"
+        class="c2c-layout"
+        :class="messagePosition"
     >
       <div class="col-1" v-if="showAvatar">
         <!-- 头像 -->
@@ -14,68 +14,68 @@
         <div class="content-wrapper">
           <message-status-icon v-if="isMine" :message="message" />
           <text-element
-                  v-if="message.type === TIM.TYPES.MSG_TEXT"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-if="message.type === TIM.TYPES.MSG_TEXT"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <image-element
-                  v-else-if="message.type === TIM.TYPES.MSG_IMAGE"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_IMAGE"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <file-element
-                  v-else-if="message.type === TIM.TYPES.MSG_FILE"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_FILE"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <sound-element
-                  v-else-if="message.type === TIM.TYPES.MSG_SOUND"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_SOUND"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <group-tip-element
-                  v-else-if="message.type===TIM.TYPES.MSG_GRP_TIP"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type===TIM.TYPES.MSG_GRP_TIP"
+              :payload="message.payload"
+              :message="message"
           />
           <group-system-notice-element
-                  v-else-if="message.type === TIM.TYPES.MSG_GRP_SYS_NOTICE"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_GRP_SYS_NOTICE"
+              :payload="message.payload"
+              :message="message"
           />
           <custom-element
-                  v-else-if="message.type === TIM.TYPES.MSG_CUSTOM"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_CUSTOM"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <face-element
-                  v-else-if="message.type === TIM.TYPES.MSG_FACE"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_FACE"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <video-element
-                  v-else-if="message.type === TIM.TYPES.MSG_VIDEO"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_VIDEO"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <geo-element
-                  v-else-if="message.type === TIM.TYPES.MSG_GEO"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_GEO"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <merger-element
-                  v-else-if="message.type === TIM.TYPES.MSG_MERGER"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_MERGER"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <span v-else>暂未支持的消息类型：{{message.type}}</span>
         </div>
@@ -87,9 +87,9 @@
     </div>
 
     <div
-            v-if="currentConversationType === TIM.TYPES.CONV_GROUP"
-            class="group-layout"
-            :class="messagePosition"
+        v-if="currentConversationType === TIM.TYPES.CONV_GROUP"
+        class="group-layout"
+        :class="messagePosition"
     >
       <!-- 头像 群组没有获取单个头像的接口，暂时无法显示头像-->
       <div class="col-1" v-if="showAvatar" >
@@ -101,64 +101,64 @@
         <div class="content-wrapper">
           <message-status-icon v-if="isMine" :message="message" />
           <text-element
-                  v-if="message.type === TIM.TYPES.MSG_TEXT"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-if="message.type === TIM.TYPES.MSG_TEXT"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <image-element
-                  v-else-if="message.type === TIM.TYPES.MSG_IMAGE"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_IMAGE"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <file-element
-                  v-else-if="message.type === TIM.TYPES.MSG_FILE"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_FILE"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <sound-element
-                  v-else-if="message.type === TIM.TYPES.MSG_SOUND"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_SOUND"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <group-tip-element
-                  v-else-if="message.type===TIM.TYPES.MSG_GRP_TIP"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type===TIM.TYPES.MSG_GRP_TIP"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <custom-element
-                  v-else-if="message.type === TIM.TYPES.MSG_CUSTOM"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_CUSTOM"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <face-element
-                  v-else-if="message.type === TIM.TYPES.MSG_FACE"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_FACE"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <video-element
-                  v-else-if="message.type === TIM.TYPES.MSG_VIDEO"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_VIDEO"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <geo-element
-                  v-else-if="message.type === TIM.TYPES.MSG_GEO"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_GEO"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <merger-element
-                  v-else-if="message.type === TIM.TYPES.MSG_MERGER"
-                  :isMine="isMine"
-                  :payload="message.payload"
-                  :message="message"
+              v-else-if="message.type === TIM.TYPES.MSG_MERGER"
+              :isMine="isMine"
+              :payload="message.payload"
+              :message="message"
           />
           <span v-else>暂未支持的消息类型：{{message.type}}</span>
         </div>
@@ -243,19 +243,11 @@ export default {
     },
     avatar() {
       if (this.currentConversation.type === 'C2C') {
-        // if(this.$store1.state.role ==1) {
-        //   if(this.isMine)
-        //     return 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
-        // }
-        // else if (this.$store.state.role == 2){
-        //   if(this.isMine)
-        //     return 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
-        // }
-          return this.message.avatar
+        return this.message.avatar
       } else if (this.currentConversation.type === 'GROUP') {
         return this.isMine
-          ? this.currentUserProfile.avatar
-          : this.message.avatar
+            ? this.currentUserProfile.avatar
+            : this.message.avatar
       } else {
         return ''
       }
@@ -269,9 +261,9 @@ export default {
     },
     messagePosition() {
       if (
-              ['TIMGroupTipElem', 'TIMGroupSystemNoticeElem'].includes(
-                      this.message.type
-              )
+          ['TIMGroupTipElem', 'TIMGroupSystemNoticeElem'].includes(
+              this.message.type
+          )
       ) {
         return 'position-center'
       }
@@ -286,9 +278,9 @@ export default {
     },
     showMessageHeader() {
       if (
-              ['TIMGroupTipElem', 'TIMGroupSystemNoticeElem'].includes(
-                      this.message.type
-              )
+          ['TIMGroupTipElem', 'TIMGroupSystemNoticeElem'].includes(
+              this.message.type
+          )
       ) {
         return false
       }
@@ -301,15 +293,15 @@ export default {
   methods: {
     showGroupMemberProfile(event) {
       this.tim
-              .getGroupMemberProfile({
-                groupID: this.message.to,
-                userIDList: [this.message.from]
-              })
-              .then(({data: {memberList}}) => {
-                if (memberList[0]) {
-                  this.$bus.$emit('showMemberProfile', {event, member: memberList[0]})
-                }
-              })
+          .getGroupMemberProfile({
+            groupID: this.message.to,
+            userIDList: [this.message.from]
+          })
+          .then(({data: {memberList}}) => {
+            if (memberList[0]) {
+              this.$bus.$emit('showMemberProfile', {event, member: memberList[0]})
+            }
+          })
     }
   }
 }
