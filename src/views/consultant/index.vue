@@ -33,7 +33,7 @@
             </el-menu-item>
           </router-link>
           <router-link to="/consultant/connect">
-            <el-menu-item index="3" @click="IMProfile">
+            <el-menu-item index="3">
               <i class="el-icon-chat-round" />
               <span style="margin-left: 15px">处理会话</span>
             </el-menu-item>

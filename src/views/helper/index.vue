@@ -66,6 +66,9 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.IMProfile()
+  },
   methods: {
     handleSelect(key, keyPath) {
       // console.log(key, keyPath);
@@ -117,6 +120,41 @@ export default {
         this.$store.commit('stopComputeCurrent')
         this.$store.commit('reset')
       })
+    },
+    IMProfile() {
+      // const options = {}
+      // // 过滤空串
+      // Object.keys(this.form).forEach(key => {
+      //   if (this.form[key]) {
+      //     options[key] = this.form[key]
+      //   }
+      // })
+      // this.tim
+      //     .updateMyProfile({ avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png', nick: '', gender: '',allowType: '' })
+      //     .then(() => {
+      //       this.$store.commit('showMessage', {
+      //         message: '修改成功'
+      //       })
+      //       this.showEditMyProfile = false
+      //     })
+      //     .catch(imError => {
+      //       this.$store.commit('showMessage', {
+      //         message: imError.message,
+      //         type: 'error'
+      //       })
+      //     })
+      let promise = tim.updateMyProfile({
+        nick: this.$store1.state.trueName,
+        avatar: 'https://imgcache.qq.com/open/qcloud/video/act/webim-avatar/avatar-2.png',
+        gender: 'Gender_Type_Male',
+        selfSignature: '',
+        allowType: 'AllowType_Type_AllowAny'
+      });
+      promise.then(function(imResponse) {
+        console.log(imResponse.data); // 更新资料成功
+      }).catch(function(imError) {
+        console.warn('updateMyProfile error:', imError); // 更新资料失败的相关信息
+      });
     }
   }
 }

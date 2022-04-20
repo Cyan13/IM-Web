@@ -158,7 +158,7 @@ export default {
               this.getTime()
               // console.log(this.startTime)
               // console.log(this.$store2.state.helperUserName)
-              this.getConsultantData()
+              // this.getConsultantData()
               // this.$store2.commit('setConsultantTrueName',this.consultantTrueName)
               this.getHelperData()
               // this.$store2.commit('setHelperID',this.helperID)
@@ -197,7 +197,7 @@ export default {
           'consultantID': this.$store1.state.userid,
           'helperID': this.$store2.state.helperID,
           'customerTrueName': '',
-          'consultantTrueName': this.$store1.state.tureName,
+          'consultantTrueName': this.$store1.state.trueName,
           'helperTrueName': this.$store2.state.helperTrueName,
           'date': this.$store2.state.date+ ' 00:00:00.000000',
           'startTime': this.$store2.state.startTime,
